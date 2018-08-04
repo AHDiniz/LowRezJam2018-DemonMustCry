@@ -31,7 +31,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> 1b42c067d02d4305b0196243ec06d5c0a475fe13
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -73,12 +77,20 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
+<<<<<<< HEAD
     textureFormat: 4
+=======
+    textureFormat: -1
+>>>>>>> 1b42c067d02d4305b0196243ec06d5c0a475fe13
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
+<<<<<<< HEAD
     overridden: 1
+=======
+    overridden: 0
+>>>>>>> 1b42c067d02d4305b0196243ec06d5c0a475fe13
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: iPhone
