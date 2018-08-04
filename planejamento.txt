@@ -1,0 +1,13 @@
+Animações a serem feitas:
+
+1 - Parado: 2 frames de 16x16 cada;
+
+1 - Andar: 4 frames de 16x16 cada;
+
+2 - Pular: 4 frames de 16x16 cada;
+
+3 - Caindo: 2 frames de 16x16 cada;
+
+3 - Ataque Curvo: 4 frames de X por X cada;
+
+4 - Ataque Direto: 4 frames de X por X cada;
