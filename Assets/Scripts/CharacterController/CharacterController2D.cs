@@ -10,6 +10,7 @@ public class CharacterController2D : MonoBehaviour
 	public float groundCheckRadius;
 	public Transform groundChecker;
 	public LayerMask groundLayer;
+	public AudioClip[] playerSFX;
 
 	private bool isGrounded;
 	private bool isJumping;
@@ -18,12 +19,14 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D rigidBody2D;
 	private SpriteRenderer spriteRenderer;
 	private Animator animator;
+	private AudioSource audioSource;
 
 	private void Start()
 	{
 		rigidBody2D = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
 		jumpTimeCounter = jumpDuration;
 	}
 
@@ -35,6 +38,8 @@ public class CharacterController2D : MonoBehaviour
 	private void FixedUpdate()
 	{
 		isGrounded = Physics2D.OverlapCircle(groundChecker.position, groundCheckRadius, groundLayer);
+		animator.SetBool("isGrounded", isGrounded);
+		animator.SetBool("isJumping", isJumping);
 		HorizontalMovement();
 	}
 
@@ -57,6 +62,9 @@ public class CharacterController2D : MonoBehaviour
 		if (Input.GetButtonDown("Jump") && isGrounded)
 		{
 			isJumping = true;
+			audioSource.clip = playerSFX[0];
+			audioSource.loop = false;
+			audioSource.Play();
 			jumpTimeCounter = jumpDuration;
 			rigidBody2D.velocity = Vector2.up * jumpForce;
 		}
