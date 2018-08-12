@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterAttackSystem : MonoBehaviour
 {
 	public int meleeDamage;
+	public int health;
 	public float circleRadius;
 	public Transform meleePosRight, meleePosLeft;
 	public float meleeCooldown;
@@ -31,7 +32,12 @@ public class CharacterAttackSystem : MonoBehaviour
 			{
 				meleeTimer = meleeCooldown;
 				Collider2D[] enemies = (spriteRenderer.flipX) ? Physics2D.OverlapCircleAll(meleePosLeft.position, circleRadius, enemiesLayer) : Physics2D.OverlapCircleAll(meleePosRight.position, circleRadius, enemiesLayer);
-				// Make the enemy take damage here
+				for (int i = 0; i < enemies.Length; i++)
+				{
+					Enemy enemy = enemies[i].GetComponent<Enemy>();
+					if (enemy != null)
+						enemy.TakeDamage(meleeDamage);
+				}
 			}
 			meleeTimer = meleeCooldown;
 		}

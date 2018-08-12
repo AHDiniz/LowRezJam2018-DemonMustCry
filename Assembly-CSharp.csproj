@@ -56,6 +56,8 @@
      <Compile Include="Assets\Scripts\CameraController\CameraController.cs" />
      <Compile Include="Assets\Scripts\CharacterController\CharacterAttackSystem.cs" />
      <Compile Include="Assets\Scripts\CharacterController\CharacterController2D.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Enemies\FlyingSkull.cs" />
      <Compile Include="Assets\ZFrame\Example\Example_ZPlayerPrefs.cs" />
      <Compile Include="Assets\ZFrame\ZPlayerPrefs.cs" />
      <None Include="Assets\ZFrame\Readme\readme_ZPlayerPrefs.txt" />
