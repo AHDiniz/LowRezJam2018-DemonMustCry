@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class CharacterAttackSystem : MonoBehaviour
 {
-	public bool isCircle = true, isRect = false;
 	public int meleeDamage;
 	public float circleRadius;
-	public float rectX, rectY;
-	public Transform meleePosition;
+	public Transform meleePosRight, meleePosLeft;
 	public float meleeCooldown;
 	public LayerMask enemiesLayer;
 
 	private float meleeTimer;
+	private SpriteRenderer spriteRenderer;
+
+	private void Start()
+	{
+        spriteRenderer = GetComponent<SpriteRenderer>();
+	}
 
 	private void Update()
 	{
@@ -21,16 +25,24 @@ public class CharacterAttackSystem : MonoBehaviour
 
 	private void MeleeAttack()
 	{
-        if (meleeTimer <= 0 && Input.GetButtonDown("Fire1"))
+        if (meleeTimer <= 0)
 		{
+			if (Input.GetButtonDown("Fire1"))
+			{
+				meleeTimer = meleeCooldown;
+				Collider2D[] enemies = (spriteRenderer.flipX) ? Physics2D.OverlapCircleAll(meleePosLeft.position, circleRadius, enemiesLayer) : Physics2D.OverlapCircleAll(meleePosRight.position, circleRadius, enemiesLayer);
+				// Make the enemy take damage here
+			}
 			meleeTimer = meleeCooldown;
-			Collider2D[] enemies;
-			if (isCircle && !isRect)
-				enemies = Physics2D.OverlapCircleAll(meleePosition.position, circleRadius, enemiesLayer);
-			else if (!isCircle && isRect)
-                enemies = Physics2D.OverlapBoxAll(meleePosition.position, new Vector2(rectX, rectY), enemiesLayer, 0);
 		}
 		else
 			meleeTimer -= Time.deltaTime;
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(meleePosLeft.position, circleRadius);
+        Gizmos.DrawWireSphere(meleePosRight.position, circleRadius);
 	}
 }
